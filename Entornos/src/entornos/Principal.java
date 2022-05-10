@@ -9,10 +9,13 @@ public class Principal {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-		File carpeta = new File("dCuadrado");
+		File carpeta = new File("C:\\dCuadrado");
 		carpeta.mkdir();
 		
-		File carpetaUsuarios = new File("dCuadrado\\Usuarios");
+		File carpetaUsuarios = new File("C:\\dCuadrado\\Usuarios");
+		carpetaUsuarios.mkdir();
+		
+		carpetaUsuarios = new File("C:\\dCuadrado\\Admins");
 		carpetaUsuarios.mkdir();
 		
 		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
