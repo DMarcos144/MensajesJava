@@ -22,7 +22,7 @@ public class Principal {
 		ArrayList<Administrador> admins = new ArrayList<Administrador>();
 		admins.add(new Administrador(123123123));
 		//PrintWriter out = new PrintWriter(direccion + "filename.txt");
-		//comentrio
+		//semento
 	}
 
 }
