@@ -25,4 +25,7 @@ public class Administrador extends Usuario {
 	
 	//METODOS
 	
+	public static void prueba() {
+		System.out.println("Hola");
+	}
 }

@@ -25,4 +25,8 @@ public class Usuario {
 	
 	//METODOS
 	
+	public static void pruebau() {
+		System.out.println("Hola");
+	}
+	
 }

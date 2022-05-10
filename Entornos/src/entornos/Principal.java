@@ -7,8 +7,13 @@ import java.util.ArrayList;
 
 public class Principal {
 
-	public static void main(String[] args) throws FileNotFoundException {
-		// TODO Auto-generated method stub
+	static boolean administrador;
+	
+	static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+	
+	static ArrayList<Administrador> admins = new ArrayList<Administrador>();
+	
+	public static void crearCarpetas() throws FileNotFoundException {
 		File carpeta = new File("C:\\dCuadrado");
 		carpeta.mkdir();
 		
@@ -17,15 +22,37 @@ public class Principal {
 		
 		carpetaUsuarios = new File("C:\\dCuadrado\\Admins");
 		carpetaUsuarios.mkdir();
+	}
+	
+	public static void registro(int num) {
+		for (Usuario i:  usuarios) {
+			if (i.getTelefono() == num)
+				administrador = false; 
+		}
+		for (Administrador i:  admins) {
+			if (i.getTelefono() == num)
+				administrador = true;
+		}
+	}
+	
+	public static void main(String[] args){
+		// TODO Auto-generated method stub
 		
-		ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+		try {
+			crearCarpetas();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println();
+				
 		usuarios.add(new Usuario(123456789));
 		usuarios.add(new Usuario(987654321));
 		
-		ArrayList<Administrador> admins = new ArrayList<Administrador>();
 		admins.add(new Administrador(123123123));
-		//PrintWriter out = new PrintWriter(direccion + "filename.txt");
-		//semento
+		
+		registro(123456789);
+		
+		System.out.println(administrador);
 	}
-
 }
