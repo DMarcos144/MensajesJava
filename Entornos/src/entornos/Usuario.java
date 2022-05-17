@@ -1,25 +1,25 @@
 package entornos;
 
 public class Usuario {
-	private int telefono;
+	private String telefono;
 
 	
 	//GETTER y SETTER
-	public int getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
-	public void setTelefono(int telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 	
 	//CONSTRUCTORES
 	
 	public Usuario() {
-		telefono = 0;
+		telefono = "";
 	}
 	
-	public Usuario(int tel) {
+	public Usuario(String tel) {
 		telefono = tel;
 	}
 	
