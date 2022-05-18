@@ -74,6 +74,7 @@ public class Principal {
 		usuarios.add(new Usuario("987654321"));
 		
 		admins.add(new Administrador("123123123"));
+		
 		boolean salir = false;
 		while (!salir) {
 			System.out.print("Selecciona una opción (1-8): ");
@@ -98,14 +99,14 @@ public class Principal {
 										System.out.println("\nUsuario no encontrado");
 								} else {
 									if (administrador)
-										System.out.println("\nTe has registrado como administrador");
+										System.out.println("\nTe has registrado como administrador\n");
 									else {
 										System.out.println("\nTe has registrado como usuario");
 									}
 								}
 							} catch (InputMismatchException e) {
 								System.out.println("\nSe han introducido caracteres no válidos");
-								num = "111111111";
+								num = "000000000";
 						}
 					}
 				break;
