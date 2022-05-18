@@ -105,7 +105,7 @@ public class Principal {
 								}
 							} catch (InputMismatchException e) {
 								System.out.println("\nSe han introducido caracteres no válidos");
-								num = "111111111";
+								num = "123321123";
 						}
 					}
 				break;
