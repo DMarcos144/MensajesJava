@@ -10,6 +10,8 @@ import java.util.Scanner;
 public class Principal {
 
 	static boolean administrador;
+	
+	static String usuarioActivo;
 
 	static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 
@@ -76,15 +78,16 @@ public class Principal {
 					else if (!valido)
 						System.out.println("\nUsuario no encontrado");
 				} else {
-					if (administrador)
+					if (administrador) {
 						System.out.println("\nTe has registrado como administrador\n");
-					else {
+						usuarioActivo = num;
+					}else {
 						System.out.println("\nTe has registrado como usuario");
+						usuarioActivo = num;
 					}
 				}
 			} catch (InputMismatchException e) {
 				System.out.println("\nSe han introducido caracteres no válidos");
-				num = "000000000";
 			}
 		}
 	}
@@ -107,13 +110,18 @@ public class Principal {
 
 		boolean salir = false;
 		while (!salir) {
+			if (usuarioActivo == null)
+				iniciarSesion();
+			
 			System.out.print("Selecciona una opción (1-8): ");
 			int eleccion = pedirNumero();
-			String num;
 			switch (eleccion) {
 			case 1:
 				iniciarSesion();
-				break;
+			break;
+			case 8:
+				usuarioActivo = null;
+			break;
 			default:
 				System.out.println("a");
 			}
