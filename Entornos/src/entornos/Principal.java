@@ -67,7 +67,7 @@ public class Principal {
 			try {
 				System.out.print("\nIntroduce el numero de usuario: ");
 				Scanner sc = new Scanner(System.in);
-				num = Integer.toString(sc.nextInt());
+				num = Long.toString(sc.nextLong());
 				valido = registro(num);
 				if (!valido) {
 					if (num.length() <9)
@@ -85,6 +85,35 @@ public class Principal {
 						System.out.println("\nTe has registrado como usuario");
 						usuarioActivo = num;
 					}
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("\nSe han introducido caracteres no válidos");
+			}
+		}
+	}
+	
+	public static void comprobarNumero() {
+		String num;
+
+		for(boolean valido = false ; !valido;) {
+
+			try {
+
+				System.out.print("\nIntroduce el numero de usuario: ");
+				Scanner sc = new Scanner(System.in);
+				num = Long.toString(sc.nextLong());
+				valido = registro(num);
+				if (!valido) {
+					if (num.length() <9)
+						System.out.println("\nEl numero tiene menos de 9 digitos");
+					else if (num.length() >9) {
+						System.out.println("\nEl numero tiene más de 9 digitos");
+					}
+					else if(!valido) {
+						System.out.println("\nUsuario no encontrado");
+					}					
+				} else {
+					System.out.println("");
 				}
 			} catch (InputMismatchException e) {
 				System.out.println("\nSe han introducido caracteres no válidos");
@@ -109,6 +138,7 @@ public class Principal {
 		admins.add(new Administrador("123123123"));
 		boolean salir = false;
 		while (!salir) {
+			System.out.println(usuarioActivo);
 			if (usuarioActivo == null)
 				iniciarSesion();
 			
@@ -117,23 +147,41 @@ public class Principal {
 				System.out.println("\n1: Enviar mensaje");
 				System.out.println("\n2: Ver mensajes enviados");
 				System.out.println("\n3: Ver mensajes recibidos");
-				System.out.println("\n4: Ver mensajes de:");
-				System.out.println("\n5: Ver lista de contactos");
-				System.out.println("\n6: Cerrar sesión");
+				System.out.println("\n4: Ver lista de contactos");
+				System.out.println("\n0: Cerrar sesión");
 			} else {
 				System.out.println("	Menú de Administrador");
 				System.out.println("\n1: Enviar mensaje");
 				System.out.println("\n2: Ver mensajes enviados");
 				System.out.println("\n3: Ver mensajes recibidos");
-				System.out.println("\n4: Ver mensajes de:");
-				System.out.println("\n5: Ver mensajes enviados de un contacto");
+				System.out.println("\n4: Ver lista de contactos:");
 				System.out.println("\n5: Ver mensajes recibidos de un contacto");
-				System.out.println("\n6: Ver lista de contactos");
-				System.out.println("\n7: Cerrar sesión");
+				System.out.println("\n6: Ver mensajes enviados de un contacto");
+				System.out.println("\n0: Cerrar sesión");
 			}
 			int eleccion = pedirNumero();
 			switch (eleccion) {
-			case 8:
+			case 1:
+				System.out.println("A quién deseas enviar un mensaje?\n");
+				comprobarNumero();
+				System.out.println("Escribe el mensaje que quieres enviar:");
+				Scanner sc = new Scanner(System.in);
+				String mensaje = null;
+				mensaje = sc.nextLine();
+				
+				System.out.println("Mensaje guardado correctamente.");															
+			break;
+			case 2:
+				System.out.println("Estos son los mensajes que has enviado:\n");
+				System.out.println("tu vieja");
+			break;
+			case 3:
+				System.out.println("Estos son los mensajes que has recibido:\n");
+			break;
+			case 4:
+				System.out.println("Mostrando lista de contactos: ");
+			break;			
+			case 0:
 				usuarioActivo = null;
 			break;
 			default:
