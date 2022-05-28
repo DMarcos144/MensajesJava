@@ -1,6 +1,6 @@
 package entornos;
 
-public class Administrador {
+public class Administrador extends Usuario{
 	private String telefono;
 
 	
@@ -21,6 +21,10 @@ public class Administrador {
 	
 	public Administrador(String tel) {
 		telefono = tel;
+	}
+	
+	public Administrador(Usuario u) {
+		super(u);
 	}
 	
 	//METODOS

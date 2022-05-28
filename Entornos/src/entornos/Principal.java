@@ -17,15 +17,27 @@ public class Principal {
 	
 	static ArrayList<Administrador> admins = new ArrayList<Administrador>();
 	
+	static Scanner sc;
+	
 	public static void crearCarpetas() throws FileNotFoundException {
-		File carpeta = new File("C:\\dCuadrado");
+		File carpeta = new File("dCuadrado");
 		carpeta.mkdir();
 		
-		File carpetaUsuarios = new File("C:\\dCuadrado\\Usuarios");
+		File carpetaUsuarios = new File("dCuadrado\\Mensajes");
 		carpetaUsuarios.mkdir();
 		
-		carpetaUsuarios = new File("C:\\dCuadrado\\Admins");
-		carpetaUsuarios.mkdir();
+		for (Usuario i : usuarios) {
+			carpeta = new File("dCuadrado\\Mensajes\\" + i.getTelefono() + "\\enviados");
+			carpeta.mkdirs();
+			carpeta = new File("dCuadrado\\Mensajes\\" + i.getTelefono() + "\\recibidos");
+			carpeta.mkdirs();
+		}
+		for (Administrador i : admins) {
+			carpeta = new File("dCuadrado\\Mensajes\\" + i.getTelefono() + "\\enviados");
+			carpeta.mkdirs();
+			carpeta = new File("dCuadrado\\Mensajes\\" + i.getTelefono() + "\\recibidos");
+			carpeta.mkdirs();
+		}
 	}
 	
 	public static int pedirNumero() {
@@ -33,7 +45,7 @@ public class Principal {
 		for (boolean error = true ; error ;) {
 			error = false;
 			try {
-				Scanner sc = new Scanner(System.in);
+				sc = new Scanner(System.in);
 				num = sc.nextInt();
 			} catch (InputMismatchException e) {
 				System.out.println("\nPor favor, introduzca solo numeros");
@@ -59,6 +71,23 @@ public class Principal {
 		}
 		return usuarioEncontrado;
 	}
+	
+	public static Object sacarUsuario(String num) {
+		Object usuarioEncontrado = new Object();
+		for (Usuario i:  usuarios) {
+			if (i.getTelefono().equals(num)) {
+				administrador = false;
+				usuarioEncontrado = new Usuario(i);
+			}
+		}
+		for (Administrador i:  admins) {
+			if (i.getTelefono().equals(num)) {
+				administrador = true;
+				usuarioEncontrado = new Administrador(i);
+			}
+		}
+		return usuarioEncontrado;
+	}
 
 	public static void iniciarSesion() {
 		String num;
@@ -66,7 +95,7 @@ public class Principal {
 
 			try {
 				System.out.print("\nIntroduce el numero de usuario: ");
-				Scanner sc = new Scanner(System.in);
+				sc = new Scanner(System.in);
 				num = Long.toString(sc.nextLong());
 				valido = registro(num);
 				if (!valido) {
@@ -92,17 +121,16 @@ public class Principal {
 		}
 	}
 	
-	public static void comprobarNumero() {
+	public static String comprobarNumero() {
 		String num;
-
-		for(boolean valido = false ; !valido;) {
+		String resultado = "";
 
 			try {
 
 				System.out.print("\nIntroduce el numero de usuario: ");
-				Scanner sc = new Scanner(System.in);
+				sc = new Scanner(System.in);
 				num = Long.toString(sc.nextLong());
-				valido = registro(num);
+				boolean valido = registro(num);
 				if (!valido) {
 					if (num.length() <9)
 						System.out.println("\nEl numero tiene menos de 9 digitos");
@@ -114,15 +142,20 @@ public class Principal {
 					}					
 				} else {
 					System.out.println("");
+					resultado = num;
 				}
 			} catch (InputMismatchException e) {
-				System.out.println("\nSe han introducido caracteres no válidos");
+				System.out.println("\nSe han introducido caracteres no válidos o demasiados caracteres");
 			}
-		}
+			return resultado;
 	}
 
 	public static void main(String[] args){
 		// TODO Auto-generated method stub
+		usuarios.add(new Usuario("123456789"));
+		usuarios.add(new Usuario("987654321"));
+		
+		admins.add(new Administrador("123123123"));
 		
 		try {
 			crearCarpetas();
@@ -131,14 +164,9 @@ public class Principal {
 		}
 		
 		System.out.println();
-				
-		usuarios.add(new Usuario("123456789"));
-		usuarios.add(new Usuario("987654321"));
 		
-		admins.add(new Administrador("123123123"));
 		boolean salir = false;
 		while (!salir) {
-			System.out.println(usuarioActivo);
 			if (usuarioActivo == null)
 				iniciarSesion();
 			
@@ -162,14 +190,7 @@ public class Principal {
 			int eleccion = pedirNumero();
 			switch (eleccion) {
 			case 1:
-				System.out.println("A quién deseas enviar un mensaje?\n");
-				comprobarNumero();
-				System.out.println("Escribe el mensaje que quieres enviar:");
-				Scanner sc = new Scanner(System.in);
-				String mensaje = null;
-				mensaje = sc.nextLine();
-				
-				System.out.println("Mensaje guardado correctamente.");															
+				Usuario.enviarMensaje();													
 			break;
 			case 2:
 				System.out.println("Estos son los mensajes que has enviado:\n");
@@ -180,7 +201,10 @@ public class Principal {
 			break;
 			case 4:
 				System.out.println("Mostrando lista de contactos: ");
-			break;			
+			break;	
+			case 69:
+				sc = new Scanner(System.in);
+			break;
 			case 0:
 				usuarioActivo = null;
 			break;
