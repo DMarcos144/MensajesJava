@@ -154,4 +154,90 @@ public class Usuario {
 			System.out.println("No se ha encontrado al remitente");
 		}
 	}
+	
+	public static void agregarApodo() {
+		System.out.println("A qué contacto deseas ponerlo un apodo?");
+		String contacto = Principal.comprobarNumero();
+		if (!contacto.isEmpty()) {
+			try {	
+
+				System.out.println("Introduce el apodo que quieras ponerle a este contacto: ");
+				sc = new Scanner(System.in);
+				String apodo = sc.nextLine();
+				File carpeta = new File("dCuadrado\\Mensajes\\" + Principal.usuarioActivo + "\\Contactos");
+				carpeta.mkdirs();
+				PrintWriter out = new PrintWriter("dCuadrado\\Mensajes\\" + Principal.usuarioActivo + "\\Contactos\\" + contacto + ".txt");
+				out.print(apodo);
+				out.close();
+				System.out.println("Apodo añadido correctamente");
+
+			} catch (java.io.FileNotFoundException e) {
+				System.out.println("\nHubo un error encontrando el archivo\n");
+			} catch (NullPointerException e) {
+				System.out.println("\nHubo un error inesperado...\n");
+			} 
+
+
+		} else {
+			System.out.println("Este contacto no existe");
+		}
+
+	}
+	
+	public static void listarContactos() {
+		int num = 1;
+		System.out.println("Usuarios:\n");
+		for(Usuario i: Principal.usuarios) {
+			if (!(i.getTelefono().equals(Principal.usuarioActivo))) {
+				System.out.print(num + ". " + i.getTelefono() + " ");
+				File file = new File("dCuadrado\\Mensajes\\" + Principal.usuarioActivo + "\\Contactos\\" + i.getTelefono() + ".txt");
+				if (file.exists()) {
+					try {
+						System.out.print(" (");
+						File myObj = new File("dCuadrado\\Mensajes\\" + Principal.usuarioActivo + "\\Contactos\\" + i.getTelefono() + ".txt");
+						Scanner myReader = new Scanner(myObj);
+						while (myReader.hasNextLine()) {
+						  String data = myReader.nextLine();
+						  System.out.print(data);
+						}
+						System.out.print(") ");
+					} catch (FileNotFoundException e) {
+						
+					}
+				}
+			} else {
+				System.out.println(num + ". " + "Tú- " + Principal.usuarioActivo);
+			} 
+			num++;
+			System.out.println("\n");
+		}
+		System.out.println("\n----------------------------\nAdministradores:\n");
+		num = 1;
+		for(Administrador i: Principal.admins) {
+			if (!(i.getTelefono().equals(Principal.usuarioActivo))) {
+				System.out.print(num + ". " + i.getTelefono() + " ");
+				File file = new File("dCuadrado\\Mensajes\\" + Principal.usuarioActivo + "\\Contactos\\" + i.getTelefono() + ".txt");
+				if (file.exists()) {
+					try {
+						System.out.print(" (");
+						File myObj = new File("dCuadrado\\Mensajes\\" + Principal.usuarioActivo + "\\Contactos\\" + i.getTelefono() + ".txt");
+						Scanner myReader = new Scanner(myObj);
+						while (myReader.hasNextLine()) {
+						  String data = myReader.nextLine();
+						  System.out.print(data);
+						}
+						System.out.print(") ");
+					} catch (FileNotFoundException e) {
+						System.out.println("PITO");
+					}
+				}
+			} else {
+				System.out.println(num + ". " + "Tú- " + Principal.usuarioActivo);
+			}
+			num++;
+			System.out.println("\n");
+		}
+	}
+
+
 }

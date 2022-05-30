@@ -185,44 +185,74 @@ public class Principal {
 			if (usuarioActivo == null)
 				iniciarSesion();
 			
-			if(!administrador) {	
+			if(!administrador) {
 				System.out.println("\n	Menú de Usuario");
 				System.out.println("\n1: Enviar mensaje");
 				System.out.println("\n2: Ver mensajes enviados");
 				System.out.println("\n3: Ver mensajes recibidos");
 				System.out.println("\n4: Ver lista de contactos");
+				System.out.println("\n5: Asociar un apodo a un contacto");
 				System.out.println("\n0: Cerrar sesión");
+				
+				int eleccion = pedirNumero();
+				switch (eleccion) {
+				case 1:
+					Usuario.enviarMensaje();													
+				break;
+				case 2:
+					Usuario.leerMensajesEnviados();
+				break;
+				case 3:
+					Usuario.leerMensajesRecibidos();
+				break;
+				case 4:
+					Usuario.listarContactos();
+				break;
+				case 5:
+					Usuario.agregarApodo();
+				break;
+				case 0:
+					usuarioActivo = null;
+				break;
+				default:
+					System.out.println("No es una opción válida.");
+				}
 			} else {
 				System.out.println("\n	Menú de Administr0ador");
 				System.out.println("\n1: Enviar mensaje");
 				System.out.println("\n2: Ver mensajes enviados");
 				System.out.println("\n3: Ver mensajes recibidos");
 				System.out.println("\n4: Ver lista de contactos:");
-				System.out.println("\n5: Ver mensajes de un contacto");
+				System.out.println("\n5: Asociar un apodo a un contacto");
+				System.out.println("\n6: Ver mensajes de un contacto");
 				System.out.println("\n0: Cerrar sesión");
-			}
-			int eleccion = pedirNumero();
-			switch (eleccion) {
-			case 1:
-				Usuario.enviarMensaje();													
-			break;
-			case 2:
-				Usuario.leerMensajesEnviados();
-			break;
-			case 3:
-				Usuario.leerMensajesRecibidos();
-			break;
-			case 4:
-				System.out.println("Mostrando lista de contactos: ");
-			break;	
-			case 5:
-				Administrador.leerMensajesAdmin();
-			break;
-			case 0:
-				usuarioActivo = null;
-			break;
-			default:
-				System.out.println("a");
+				
+				int eleccion = pedirNumero();
+				switch (eleccion) {
+				case 1:
+					Usuario.enviarMensaje();													
+				break;
+				case 2:
+					Usuario.leerMensajesEnviados();
+				break;
+				case 3:
+					Usuario.leerMensajesRecibidos();
+				break;
+				case 4:
+					Usuario.listarContactos();
+				break;
+				case 5:
+					Usuario.agregarApodo();
+				break;
+				case 6:
+					Administrador.leerMensajesAdmin();
+				break;
+				case 0:
+					usuarioActivo = null;
+				break;
+				default:
+					System.out.println("No es una opción válida.");
+				}
 			}
 		}
 	}
