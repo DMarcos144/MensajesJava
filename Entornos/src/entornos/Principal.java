@@ -72,6 +72,21 @@ public class Principal {
 		return usuarioEncontrado;
 	}
 	
+	public static boolean registroSinCambio(String num) {
+		boolean usuarioEncontrado = false;
+		for (Usuario i:  usuarios) {
+			if (i.getTelefono().equals(num)) {
+				usuarioEncontrado = true;
+			}
+		}
+		for (Administrador i:  admins) {
+			if (i.getTelefono().equals(num)) {
+				usuarioEncontrado = true;
+			}
+		}
+		return usuarioEncontrado;
+	}
+	
 	public static Object sacarUsuario(String num) {
 		Object usuarioEncontrado = new Object();
 		for (Usuario i:  usuarios) {
@@ -130,7 +145,7 @@ public class Principal {
 				System.out.print("\nIntroduce el numero de usuario: ");
 				sc = new Scanner(System.in);
 				num = Long.toString(sc.nextLong());
-				boolean valido = registro(num);
+				boolean valido = registroSinCambio(num);
 				if (!valido) {
 					if (num.length() <9)
 						System.out.println("\nEl numero tiene menos de 9 digitos");
@@ -171,14 +186,14 @@ public class Principal {
 				iniciarSesion();
 			
 			if(!administrador) {	
-				System.out.println("	Menú de Usuario");
+				System.out.println("\n	Menú de Usuario");
 				System.out.println("\n1: Enviar mensaje");
 				System.out.println("\n2: Ver mensajes enviados");
 				System.out.println("\n3: Ver mensajes recibidos");
 				System.out.println("\n4: Ver lista de contactos");
 				System.out.println("\n0: Cerrar sesión");
 			} else {
-				System.out.println("	Menú de Administrador");
+				System.out.println("\n	Menú de Administr0ador");
 				System.out.println("\n1: Enviar mensaje");
 				System.out.println("\n2: Ver mensajes enviados");
 				System.out.println("\n3: Ver mensajes recibidos");
@@ -193,11 +208,10 @@ public class Principal {
 				Usuario.enviarMensaje();													
 			break;
 			case 2:
-				System.out.println("Estos son los mensajes que has enviado:\n");
-				System.out.println("tu vieja");
+				Usuario.leerMensajesEnviados();
 			break;
 			case 3:
-				System.out.println("Estos son los mensajes que has recibido:\n");
+				Usuario.leerMensajesRecibidos();
 			break;
 			case 4:
 				System.out.println("Mostrando lista de contactos: ");
