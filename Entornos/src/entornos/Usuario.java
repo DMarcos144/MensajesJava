@@ -99,10 +99,10 @@ public class Usuario {
 			 try {
 				  String salir = "";
 				  int cantidadArchivos = new File("dCuadrado\\Mensajes\\" + Principal.usuarioActivo + "\\recibidos\\" + remitente).list().length;
-				  for (int i = cantidadArchivos; i > 0 || salir.toUpperCase().equals("SALIR");i--) {
+				  for (int i = cantidadArchivos; i > 0 && !salir.toUpperCase().equals("SALIR");i--) {
 				      File myObj = new File("dCuadrado\\Mensajes\\" + Principal.usuarioActivo + "\\recibidos\\" + remitente + "\\" + i + ".txt");
 				      Scanner myReader = new Scanner(myObj);
-				      System.out.println("\nMensaje numero " + (cantidadArchivos - i + 1)+ "\n--------------------------------------------");
+				      System.out.println("\nMensaje numero " + (i)+ "\n--------------------------------------------");
 				      while (myReader.hasNextLine()) {
 				        String data = myReader.nextLine();
 				        System.out.println(data);
@@ -131,10 +131,10 @@ public class Usuario {
 			 try {
 				  String salir = "";
 				  int cantidadArchivos = new File("dCuadrado\\Mensajes\\" + destinatario + "\\recibidos\\" + Principal.usuarioActivo).list().length;
-				  for (int i = cantidadArchivos; i > 0 || salir.toUpperCase().equals("SALIR");i--) {
+				  for (int i = cantidadArchivos; i > 0 && !salir.toUpperCase().equals("SALIR");i--) {
 				      File myObj = new File("dCuadrado\\Mensajes\\" + destinatario + "\\recibidos\\" + Principal.usuarioActivo + "\\" + i + ".txt");
 				      Scanner myReader = new Scanner(myObj);
-				      System.out.println("\nMensaje numero " + (cantidadArchivos - i + 1)+ "\n--------------------------------------------");
+				      System.out.println("\nMensaje numero " + (i)+ "\n--------------------------------------------");
 				      while (myReader.hasNextLine()) {
 				        String data = myReader.nextLine();
 				        System.out.println(data);

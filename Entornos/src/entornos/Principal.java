@@ -198,8 +198,7 @@ public class Principal {
 				System.out.println("\n2: Ver mensajes enviados");
 				System.out.println("\n3: Ver mensajes recibidos");
 				System.out.println("\n4: Ver lista de contactos:");
-				System.out.println("\n5: Ver mensajes recibidos de un contacto");
-				System.out.println("\n6: Ver mensajes enviados de un contacto");
+				System.out.println("\n5: Ver mensajes de un contacto");
 				System.out.println("\n0: Cerrar sesión");
 			}
 			int eleccion = pedirNumero();
@@ -216,8 +215,8 @@ public class Principal {
 			case 4:
 				System.out.println("Mostrando lista de contactos: ");
 			break;	
-			case 69:
-				sc = new Scanner(System.in);
+			case 5:
+				Administrador.leerMensajesAdmin();
 			break;
 			case 0:
 				usuarioActivo = null;
