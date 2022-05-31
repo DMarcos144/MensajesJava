@@ -7,7 +7,17 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Principal {
+/**
+ * Clase principal del programa, contiene los Arrays de usuarios
+ * y las variables usuarioActivo( el usuario que está iniciado sesion)
+ * y administrador (detrmina si el usuario que tiene iniciada la sesión
+ * es administrador o no).
+ * 
+ * @author Daniel Marcos
+ * @author Danut Anghel
+ *
+ */
+public abstract class Principal {
 
 	static boolean administrador;
 	
@@ -19,6 +29,13 @@ public class Principal {
 	
 	static Scanner sc;
 	
+	/**
+	 * 
+	 * Lee todos los usuarios que hay dados de alta y crea sus carpetas personales
+	 * dentro de la carpeta del programa (dCuadrado).
+	 * 
+	 * @throws FileNotFoundException
+	 */
 	public static void crearCarpetas() throws FileNotFoundException {
 		File carpeta = new File("dCuadrado");
 		carpeta.mkdir();
@@ -40,6 +57,12 @@ public class Principal {
 		}
 	}
 	
+	/**
+	 * Pide un numero por pantalla y captura errores en caso de que se
+	 * introduzcan letras o caracteres especiales
+	 * 
+	 * @return un numero entero
+	 */
 	public static int pedirNumero() {
 		int num = 0;
 		for (boolean error = true ; error ;) {
@@ -55,6 +78,14 @@ public class Principal {
 		return num;
 	}
 	
+	/**
+	 * Comprueba el numero y lo busca en todos los contactos, en caso de que exista
+	 * la funcion devuelve true, en caso contrario devuelve false.
+	 * Además, asigna valor a la variable estatica "administrador".
+	 * 
+	 * @param num el numero de telefono de un usuario
+	 * @return valor booleano
+	 */
 	public static boolean registro(String num) {
 		boolean usuarioEncontrado = false;
 		for (Usuario i:  usuarios) {
@@ -72,6 +103,14 @@ public class Principal {
 		return usuarioEncontrado;
 	}
 	
+	/**
+	 * Función similar al metodo registro() con la unica diferencia de que
+	 * este metodo solo comprueba si existe el usuario y no el valor de la
+	 * variable "administrador".
+	 * 
+	 * @param num el numero de telefono de un usuario
+	 * @return valor booleano
+	 */
 	public static boolean registroSinCambio(String num) {
 		boolean usuarioEncontrado = false;
 		for (Usuario i:  usuarios) {
@@ -86,24 +125,15 @@ public class Principal {
 		}
 		return usuarioEncontrado;
 	}
-	
-	public static Object sacarUsuario(String num) {
-		Object usuarioEncontrado = new Object();
-		for (Usuario i:  usuarios) {
-			if (i.getTelefono().equals(num)) {
-				administrador = false;
-				usuarioEncontrado = new Usuario(i);
-			}
-		}
-		for (Administrador i:  admins) {
-			if (i.getTelefono().equals(num)) {
-				administrador = true;
-				usuarioEncontrado = new Administrador(i);
-			}
-		}
-		return usuarioEncontrado;
-	}
 
+	/**
+	 * Funcion que se encarga de pedir un numero por pantalla constantemente hasta que
+	 * encuentre un usuario valido para registrarse.
+	 * 
+	 * Para saber el usuario activo, el programa utiliza la variable "usuarioActivo"
+	 * y para saber si tiene o no derechos de administrador, utiliza la variable
+	 * "administrador·.
+	 */
 	public static void iniciarSesion() {
 		String num;
 		for(boolean valido = false ; !valido;) {
@@ -136,6 +166,13 @@ public class Principal {
 		}
 	}
 	
+	/**
+	 * Pide numero de telefono al usuario para comprobar si el formato está bien
+	 * (9 numeros, sin letras ni espacios), en caso de que el formato del numero
+	 * sea valido, lo devuelve, en caso de que no lo sea, devuelve es String vacío.
+	 * 
+	 * @return numero de telefono o string vacío
+	 */
 	public static String comprobarNumero() {
 		String num;
 		String resultado = "";
@@ -165,8 +202,16 @@ public class Principal {
 			return resultado;
 	}
 
+	/**
+	 * Funcion main de la clase principal, mete a los usuarios y administradores dentro de los arrays.
+	 * 
+	 * Contiene los switches para las opciones de Usuarios y administradores.
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args){
 		// TODO Auto-generated method stub
+		System.out.println("");
 		usuarios.add(new Usuario("123456789"));
 		usuarios.add(new Usuario("987654321"));
 		usuarios.add(new Usuario("697465214"));

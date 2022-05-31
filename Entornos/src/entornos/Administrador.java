@@ -4,6 +4,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+/**
+ * Representa a un Usuario con derechos de administrador.
+ * 
+ * Administrador es una clase heredada de Usuario.
+ * 
+ * @author Daniel Marcos
+ * @author Danut Anghel
+ *
+ */
 public class Administrador extends Usuario{
 	private String telefono;
 
@@ -33,10 +42,10 @@ public class Administrador extends Usuario{
 	
 	//METODOS
 	
-	public static void prueba() {
-		System.out.println("Hola");
-	}
-	
+	/**
+	 * Permite a un administrador leer mensajes que se han
+	 * intercambiado otros usuarios entre sí
+	 */
 	public static void leerMensajesAdmin() {
 		System.out.print("Escribe el numero del remitente: ");
 		String remitente = Principal.comprobarNumero();

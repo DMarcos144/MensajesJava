@@ -5,6 +5,15 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+/**
+ * Representa a un usuario de la aplicacion.
+ * 
+ * Solo contiene el numero de telefono.
+ * 
+ * @author Daniel Marcos
+ * @author Danut Anghel
+ * 
+ */
 public class Usuario {
 	private String telefono;
 
@@ -33,10 +42,13 @@ public class Usuario {
 	
 	//METODOS
 	
-	public static void pruebau() {
-		System.out.println("Hola");
-	}
-	
+	/**
+	 * Pide por pantalla nombre de usuario del destinatario y envia un mensaje,
+	 * se le puede adjuntar opcionalmente una imagen.
+	 * 
+	 * El archivo se genera siempre con la fecha y la hora en la que se envió
+	 * en la ultima linea del archivo.
+	 */
 	public static void enviarMensaje() {
 		System.out.println("A quién deseas enviar un mensaje?\n");
 		String destinatario = Principal.comprobarNumero();
@@ -91,6 +103,10 @@ public class Usuario {
 		}
 	}//fin enviarMensaje()
 	
+	/**
+	 * Pide al usuario que introduzca el numero del remitente y saca por
+	 * pantalla todos los mensajes que le ha enviado.
+	 */
 	public static void leerMensajesRecibidos() {
 		System.out.print("Escribe el numero del remitente: ");
 		String remitente = Principal.comprobarNumero();
@@ -123,6 +139,10 @@ public class Usuario {
 		}
 	}
 	
+	/**
+	 * Pide al usuario que introduzca el numero del destinatario y saca
+	 * por pantalla los mensajes que le ha enviado el usuario al destinatario.
+	 */
 	public static void leerMensajesEnviados() {
 		System.out.print("Escribe el numero del destinatario: ");
 		String destinatario = Principal.comprobarNumero();
@@ -155,6 +175,14 @@ public class Usuario {
 		}
 	}
 	
+	/**
+	 * Permite agregar un apodo a un usuario.
+	 * 
+	 * Los apodos son independientes de cada usuario, lo que quiere decir
+	 * que solo el usuario puede ver los apodos que ha asignado el.
+	 * 
+	 * Los demas usuarios no pueden saber que apodo les has puesto.
+	 */
 	public static void agregarApodo() {
 		System.out.println("A qué contacto deseas ponerlo un apodo?");
 		String contacto = Principal.comprobarNumero();
@@ -186,6 +214,9 @@ public class Usuario {
 
 	}
 	
+	/**
+	 * Lista todos los contactos y su apodo en caso de que tenga uno.
+	 */
 	public static void listarContactos() {
 		int num = 1;
 		System.out.println("Usuarios:\n");

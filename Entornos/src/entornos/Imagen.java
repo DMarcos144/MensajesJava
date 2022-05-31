@@ -1,5 +1,12 @@
 package entornos;
 
+/**
+ * Contiene el nombre y el tamaño de un archivo de imagen.
+ * 
+ * @author Daniel Marcos
+ * @author Danut Anghel
+ *
+ */
 public class Imagen {
 		
 		private String nombre;

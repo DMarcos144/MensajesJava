@@ -3,6 +3,15 @@ package entornos;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;    
 
+/**
+ * Representa a un mensaje que los usuarios pueden enviar.
+ * 
+ * Contiene un el mensaje en sí y opcionalmente una imagen.
+ * 
+ * @author Daniel Marcos
+ * @author Danut Anghel
+ *
+ */
 public class Mensaje {
 
 
