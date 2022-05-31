@@ -159,24 +159,26 @@ public class Usuario {
 		System.out.println("A qué contacto deseas ponerlo un apodo?");
 		String contacto = Principal.comprobarNumero();
 		if (!contacto.isEmpty()) {
-			try {	
-
-				System.out.println("Introduce el apodo que quieras ponerle a este contacto: ");
-				sc = new Scanner(System.in);
-				String apodo = sc.nextLine();
-				File carpeta = new File("dCuadrado\\Mensajes\\" + Principal.usuarioActivo + "\\Contactos");
-				carpeta.mkdirs();
-				PrintWriter out = new PrintWriter("dCuadrado\\Mensajes\\" + Principal.usuarioActivo + "\\Contactos\\" + contacto + ".txt");
-				out.print(apodo);
-				out.close();
-				System.out.println("Apodo añadido correctamente");
-
-			} catch (java.io.FileNotFoundException e) {
-				System.out.println("\nHubo un error encontrando el archivo\n");
-			} catch (NullPointerException e) {
-				System.out.println("\nHubo un error inesperado...\n");
-			} 
-
+			if (!contacto.equals(Principal.usuarioActivo)) {
+				try {	
+	
+					System.out.println("Introduce el apodo que quieras ponerle a este contacto: ");
+					sc = new Scanner(System.in);
+					String apodo = sc.nextLine();
+					File carpeta = new File("dCuadrado\\Mensajes\\" + Principal.usuarioActivo + "\\Contactos");
+					carpeta.mkdirs();
+					PrintWriter out = new PrintWriter("dCuadrado\\Mensajes\\" + Principal.usuarioActivo + "\\Contactos\\" + contacto + ".txt");
+					out.print(apodo);
+					out.close();
+					System.out.println("Apodo añadido correctamente");
+	
+				} catch (java.io.FileNotFoundException e) {
+					System.out.println("\nHubo un error encontrando el archivo\n");
+				} catch (NullPointerException e) {
+					System.out.println("\nHubo un error inesperado...\n");
+				} 
+			} else
+				System.out.println("No puedes ponerte un apodo a ti mismo");
 
 		} else {
 			System.out.println("Este contacto no existe");

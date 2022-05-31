@@ -169,8 +169,12 @@ public class Principal {
 		// TODO Auto-generated method stub
 		usuarios.add(new Usuario("123456789"));
 		usuarios.add(new Usuario("987654321"));
+		usuarios.add(new Usuario("697465214"));
+		usuarios.add(new Usuario("744567697"));
 		
 		admins.add(new Administrador("123123123"));
+		admins.add(new Administrador("111111111"));
+		
 		
 		try {
 			crearCarpetas();
@@ -179,6 +183,8 @@ public class Principal {
 		}
 		
 		System.out.println();
+		
+		Usuario.listarContactos();
 		
 		boolean salir = false;
 		while (!salir) {
@@ -230,19 +236,19 @@ public class Principal {
 				int eleccion = pedirNumero();
 				switch (eleccion) {
 				case 1:
-					Usuario.enviarMensaje();													
+					Administrador.enviarMensaje();													
 				break;
 				case 2:
-					Usuario.leerMensajesEnviados();
+					Administrador.leerMensajesEnviados();
 				break;
 				case 3:
-					Usuario.leerMensajesRecibidos();
+					Administrador.leerMensajesRecibidos();
 				break;
 				case 4:
-					Usuario.listarContactos();
+					Administrador.listarContactos();
 				break;
 				case 5:
-					Usuario.agregarApodo();
+					Administrador.agregarApodo();
 				break;
 				case 6:
 					Administrador.leerMensajesAdmin();
