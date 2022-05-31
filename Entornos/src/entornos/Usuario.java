@@ -29,13 +29,24 @@ public class Usuario {
 	
 	//CONSTRUCTORES
 	
+	/**
+	 * Crea el usuario con el teléfono en blanco. 
+	*/
 	public Usuario() {
 		telefono = "";
 	}
-	
+	/**
+	 *  Recibe un String tel que es un número de teléfono y lo iguala a la variable teléfono.
+	 * @param tel Representa el teléfono del usuario.
+	 */
 	public Usuario(String tel) {
 		telefono = tel;
 	}
+	/**
+	 *	Recibe un objeto Usuario y le da ese valor al telefono. 
+	 * @param u Representa el Usuario.
+	 */
+	
 	public Usuario(Usuario u) {
 		this.telefono = u.getTelefono();
 	}

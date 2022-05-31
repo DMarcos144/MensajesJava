@@ -28,13 +28,27 @@ public class Administrador extends Usuario{
 	
 	//CONSTRUCTORES
 	
+	/**
+	 * Constructor que crea el telefono y lo deja en blanco.
+	 */
+	
 	public Administrador() {
 		telefono = "";
 	}
 	
+	/**
+	 * Recibe un String tel y lo iguala a la variable telefono.
+	 * @param tel Recibe el telefono del usuario.
+	 */
+	
 	public Administrador(String tel) {
 		telefono = tel;
 	}
+	
+	/**
+	 * Recibe el objeto Usuario, procedente del constructor Padre de la clase Usuario.
+	 * @param u Recibe el objeto Usuario.
+	 */
 	
 	public Administrador(Usuario u) {
 		super(u);

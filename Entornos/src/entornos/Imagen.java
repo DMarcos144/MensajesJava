@@ -28,11 +28,21 @@ public class Imagen {
 		
 		//Constructores
 		
+		/**
+		 * Recibe dos String (nombre y tamaño) y los iguala a sus respectivos valores.
+		 * @param nombre Recibe el nombre que tendrá la imagen.
+		 * @param tamano Recibe el tamaño que tendrá la imagen.
+		 */
+		
 		public Imagen(String nombre, String tamano) {
 
 			this.nombre = nombre;
 			this.tamano = tamano;
 		}
+		
+		/**
+		 * Constructor que crea el nombre y el tamaño de la imagen y lo deja en blanco.
+		 */
 		
 		public Imagen() {
 			this.nombre = null;

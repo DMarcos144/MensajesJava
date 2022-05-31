@@ -41,11 +41,19 @@ public class Mensaje {
 	
 //CONSTRUCTORES
 	
+	/**
+	 * Recibe un String mensaje y lo iguala a la variable mensaje.
+	 * @param mensaje Representa el menasje del usuario.
+	 */
 	public Mensaje(String mensaje) {
 		this.mensaje = mensaje;
 		imagen = null;
 	}
-
+	/**
+	 * Recibe dos String (mensaje e imagen) y lo iguala a sus respectivas variables.
+	 * @param mensaje Representa el mensaje del usuario
+	 * @param imagen Representa la imagen que envía el usuario
+	 */
 	public Mensaje(String mensaje,String imagen) {
 
 		this.mensaje = mensaje;
